@@ -84,7 +84,7 @@ For security reasons, change the permission of account.txt so as not to be read 
 `./log/` is needed.
 In the log file, the setting is recorded at first, then the results of downloading is written.
 The format of downloading result is:  
-    YYYY/MM/DD HH:MM:SS  (ABSOLUTE PATH OF FILE) EXIST/OK/NG
+    YYYY/MM/DD HH:MM:SS  (ABSOLUTE PATH OF FILE) EXIST/OK/NG  
 The first block is the date and time which the downloading is executed.
 If the last word is EXIST, the file has existed and the download command is not executed.
 If OK, file was downloaded correctory.
