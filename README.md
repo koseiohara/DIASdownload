@@ -16,78 +16,82 @@ This script is based on the one distributed by DIAS, with modifications applied
     If you download 6-hourly data, `DATA_HOUR_DELTA=6`.
     For example, if daily, `DATA_HOUR_DELTA=24`.
 
-1. Set the number of download attempts for each data  
-    Rewrite the definition of `TRY_MAX`.
-    If download is failed, downloading is tried again `TRY_MAX` times.
-    1-5 is recommended.
+1. Set the number of download attempts per dataset
+    Modify the definition of `TRY_MAX`.
+    If a download failed, it will be retried up to `TRY_MAX` times.
+    A value between 1 and 5 is recommended.
 
-1. Set the directory of data  
-    Rewrite the definition of `DIAS_DIRECTORY`.
-    Note that this directory is not for your computer, but for DIAS.
-    Open DIAS Download Website and check the path.
-    For example, "`/JRA3Q/Hist/Daily/anl_p125/`" for JRA3Q 6-hourly `anl_p125` dataset.
-    "`/JRA3Q/Hist/Daily/anl_p125`" is also available because "`/`" is padded if the last character is not "`/`".
+1. Set the DIAS directory
+    Modify the definition of `DIAS_DIRECTORY`.
+    Note that this directory refers to DIAS, not your local computer.
+    Open DIAS Download Website and check the dataset path.
+    For example, "`/JRA3Q/Hist/Daily/anl_p125/`" for the JRA3Q 6-hourly `anl_p125` dataset.
+    "`/JRA3Q/Hist/Daily/anl_p125`" is also valid, sice "`/`" will be automatically appended if missing.
 
 1. Set the title of data  
-    Rewrite the definition of `TITLE`.
-    "`anl_p125_ugrd`" for u-wind on isobaric surfaces of JRA3Q 6-hourly analysis data and "`fcst_phyp125_ttswr`" for temperature tendency due to short wave radiation of JRA3Q 6-hourly forecast data.
+    Modify the definition of `TITLE`.
+    For example:
+    - `"anl_p125_ugrd"` for u-wind on isobaric surfaces of JRA3Q 6-hourly analysis data
+    - `"fcst_phyp125_ttswr"` for temperature tendency due to short wave radiation of JRA3Q 6-hourly forecast data.
 
-1. Set the destination directory for data  
-    Rewrite the definition of `COMP_DIRECTORY`.
-    This is a directory of your computer.
-    Data is downloaded under there.
-    Like `DIAS_DIRECTORY`, the last character do not have to "`/`".
+1. Set the destination directory on your computer  
+    Modify the definition of `COMP_DIRECTORY`.
+    Data will be downloaded under this directory.
+    As with `DIAS_DIRECTORY`, the trailing "`/`" is potional.
 
 1. Set the dataset number  
-    Rewrite the definition of `targeturl`.
-    Access DIAS Download Website and check its URL to find the dataset number.
-    645 for JRA3Q and targeturl is defined as "https://data.diasjp.net/dl/storages/filelist/dataset:645".
+    Modify the definition of `targeturl`.
+    Visit the DIAS Download Website and check its URL to find the dataset number.
+    For example, JRA-3Q correspond to `645`, so:
+    ```python
+    targeturl = "https://data.diasjp.net/dl/storages/filelist/dataset:645"
+    ```
 
-1. Others  
-    If the format of file name or dias-directory is not suit for your data, edit `get_filename_data`, `get_filename_grads`, `get_dias_directory`, and `get_computer_directory`.
-    `get_filename_data` defines the file name of data.
-    `get_filename_grads` defines the file name of control and index files.
-    `get_dias_directory` defines the directory of dias.
-    `get_computer_directory` defines the destination directory for downloaded data.
+1. Other customizations  
+    If the filename or directory structure differs for your dataset, edit the following functions:
+    - `get_filename_data`: defines the data filename.
+    - `get_filename_grads`: defines filenames of control and index files.
+    - `get_dias_directory`: defines the DIAS directory.
+    - `get_computer_directory`: defines the destination directory on your computer.
 
 
 ## Run
-Command to run the script:
+To execute the script:
 ```sh
 $ python2 download.py
 ```
 You will be prompted to enter your username and password.
-Username is your e-mail adress to login DIAS
+Username is your e-mail adress to login to DIAS.
 
 ### Command Line Argument
-command line arguments can be defined.
-Here is the example:
+command line arguments can also be used.
+Example:
 ```sh
 $ python2 download.py 2022/03/01/00 2022/03/31/18 fcst_phyp125_ttlwr
 ```
-The first and second command line arguments are for `INITIAL_DATE` and `FINAL_DATE`, respectively.
+The first and second command line arguments correspond to `INITIAL_DATE` and `FINAL_DATE`.
 Their format is "`YYYY/MM/DD/HH`".
-The third one is for `TITLE`.
-If the format of the first and second are invalid or one of the command line arguments are missing, 
-their parameters are defined by the values written in the script.
+The third specify `TITLE`.
+If the first and second arguments are invalid, or if arguments are missing, the script will instead use the values defined within it.
 
 
 ## Account Authentication
 If `./account.txt` exists, your username and password are read from the file.
-Write your username in the first line and password in the second line.
-For security reasons, change the permission of account.txt so as not to be read your information by others.
+- First line: username
+- Second line: password
+For security reasons, change the file permission of `account.txt` so that others cannot read your credentials.
 
 
 ## Log
-`./log/` is needed.
-In the log file, the setting is recorded at first, then the results of downloading is written.
-The format of downloading result is:  
+`./log/` is required.
+Each log file records the settings first, followed by the download results.  
+The format of the result is:  
 ```txt
 YYYY/MM/DD HH:MM:SS  (ABSOLUTE PATH OF FILE) EXIST/OK/NG  
 ```
-The first block is the date and time which the downloading is executed.
-If the last word is `EXIST`, the file has existed and the download command is not executed.
-If `OK`, file was downloaded correctory.
-If `NG`, download was failed.
+The first block is the date and time of the download execution.
+If the last word is `EXIST`, the file already exists and the download command was skipped
+If `OK`, file was downloaded successfully.
+If `NG`, the download failed.
 
 
