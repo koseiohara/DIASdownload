@@ -8,36 +8,36 @@ Python2.7.5
 
 ## Setting
 1. Set the periods for the data to be downloaded  
-    Rewrite the definitions of `INITIAL\_DATE` and `FINAL\_DATE`.
+    Rewrite the definitions of `INITIAL_DATE` and `FINAL_DATE`.
     Their arguments are year, month, day, and hour, respectively.
 
 1. Set the temporal resolution  
-    Rewrite the definition of `DATA\_HOUR\_DELTA`.
-    If you download 6-hourly data, `DATA\_HOUR\_DELTA=6`.
-    For example, if daily, `DATA\_HOUR\_DELTA=24`.
+    Rewrite the definition of `DATA_HOUR_DELTA`.
+    If you download 6-hourly data, `DATA_HOUR_DELTA=6`.
+    For example, if daily, `DATA_HOUR_DELTA=24`.
 
 1. Set the number of download attempts for each data  
-    Rewrite the definition of `TRY\_MAX`.
-    If download is failed, downloading is tried again `TRY\_MAX` times.
+    Rewrite the definition of `TRY_MAX`.
+    If download is failed, downloading is tried again `TRY_MAX` times.
     1-5 is recommended.
 
 1. Set the directory of data  
-    Rewrite the definition of `DIAS\_DIRECTORY`.
+    Rewrite the definition of `DIAS_DIRECTORY`.
     Note that this directory is not for your computer, but for DIAS.
     Open DIAS Download Website and check the path.
-    For example, "`/JRA3Q/Hist/Daily/anl\_p125/`" for JRA3Q 6-hourly `anl\_p125` dataset.
-    "`/JRA3Q/Hist/Daily/anl\_p125`" is also available because "`/`" is padded if the last character is not "`/`".
+    For example, "`/JRA3Q/Hist/Daily/anl_p125/`" for JRA3Q 6-hourly `anl_p125` dataset.
+    "`/JRA3Q/Hist/Daily/anl_p125`" is also available because "`/`" is padded if the last character is not "`/`".
 
 1. Set the title of data  
     Rewrite the definition of `TITLE`.
-    "`anl\_p125\_ugrd`" for u-wind on isobaric surfaces of JRA3Q 6-hourly analysis data and
-    "`fcst\_phyp125\_ttswr`" for temperature tendency due to short wave radiation of JRA3Q 6-hourly forecast data.
+    "`anl_p125_ugrd`" for u-wind on isobaric surfaces of JRA3Q 6-hourly analysis data and
+    "`fcst_phyp125_ttswr`" for temperature tendency due to short wave radiation of JRA3Q 6-hourly forecast data.
 
 1. Set the destination directory for data  
-    Rewrite the definition of `COMP\_DIRECTORY`.
+    Rewrite the definition of `COMP_DIRECTORY`.
     This is a directory of your computer.
     Data is downloaded under there.
-    Like `DIAS\_DIRECTORY`, the last character do not have to "`/`".
+    Like `DIAS_DIRECTORY`, the last character do not have to "`/`".
 
 1. Set the dataset number  
     Rewrite the definition of `targeturl`.
@@ -46,11 +46,11 @@ Python2.7.5
 
 1. Others  
     If the format of file name or dias-directory is not suit for your data, 
-    edit `get\_filename\_data`, `get\_filename\_grads`, `get\_dias\_directory`, and `get\_computer\_directory`.
-    `get\_filename\_data` defines the file name of data.
-    `get\_filename\_grads` defines the file name of control and index files.
-    `get\_dias\_directory` defines the directory of dias.
-    `get\_computer\_directory` defines the destination directory for downloaded data.
+    edit `get_filename_data`, `get_filename_grads`, `get_dias_directory`, and `get_computer_directory`.
+    `get_filename_data` defines the file name of data.
+    `get_filename_grads` defines the file name of control and index files.
+    `get_dias_directory` defines the directory of dias.
+    `get_computer_directory` defines the destination directory for downloaded data.
 
 
 ## Run
@@ -67,7 +67,7 @@ Here is the example:
 ```sh
 $ python2 download.py 2022/03/01/00 2022/03/31/18 fcst_phyp125_ttlwr
 ```
-The first and second command line arguments are for `INITIAL\_DATE` and `FINAL\_DATE`, respectively.
+The first and second command line arguments are for `INITIAL_DATE` and `FINAL_DATE`, respectively.
 Their format is "`YYYY/MM/DD/HH`".
 The third one is for `TITLE`.
 If the format of the first and second are invalid or one of the command line arguments are missing, 
