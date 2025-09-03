@@ -7,7 +7,7 @@ This script is based on the one distributed by DIAS, with modifications applied
 
 
 ## Setting
-1. Set the period of data to be downloaded
+1. Set the period of data to be downloaded  
     Modify the definitions of `INITIAL_DATE` and `FINAL_DATE`.
     Their arguments are year, month, day, and hour, respectively.
 
@@ -16,12 +16,12 @@ This script is based on the one distributed by DIAS, with modifications applied
     If you download 6-hourly data, `DATA_HOUR_DELTA=6`.
     For example, if daily, `DATA_HOUR_DELTA=24`.
 
-1. Set the number of download attempts per dataset
+1. Set the number of download attempts per dataset  
     Modify the definition of `TRY_MAX`.
     If a download failed, it will be retried up to `TRY_MAX` times.
     A value between 1 and 5 is recommended.
 
-1. Set the DIAS directory
+1. Set the DIAS directory  
     Modify the definition of `DIAS_DIRECTORY`.
     Note that this directory refers to DIAS, not your local computer.
     Open DIAS Download Website and check the dataset path.
@@ -29,7 +29,7 @@ This script is based on the one distributed by DIAS, with modifications applied
     "`/JRA3Q/Hist/Daily/anl_p125`" is also valid, since "`/`" will be automatically appended if missing.
 
 1. Set the title of data  
-    Modify the definition of `TITLE`.
+    Modify the definition of `TITLE`.  
     For example:
     - `"anl_p125_ugrd"` for u-wind on isobaric surfaces of JRA-3Q 6-hourly analysis data
     - `"fcst_phyp125_ttswr"` for temperature tendency due to short wave radiation of JRA-3Q 6-hourly forecast data.
@@ -41,7 +41,7 @@ This script is based on the one distributed by DIAS, with modifications applied
 
 1. Set the dataset number  
     Modify the definition of `targeturl`.
-    Visit the DIAS Download Website and check its URL to find the dataset number.
+    Visit the DIAS Download Website and check its URL to find the dataset number.  
     For example, JRA-3Q correspond to `645`, so:
     ```python
     targeturl = "https://data.diasjp.net/dl/storages/filelist/dataset:645"
@@ -64,7 +64,7 @@ You will be prompted to enter your username and password.
 Username is your e-mail address used to log in to DIAS.
 
 ### Command Line Argument
-command line arguments can also be used.
+command line arguments can also be used.  
 Example:
 ```sh
 $ python2 download.py 2022/03/01/00 2022/03/31/18 fcst_phyp125_ttlwr
@@ -77,8 +77,8 @@ If the first and second arguments are invalid, or if arguments are missing, the 
 
 ## Account Authentication
 If `./account.txt` exists, your username and password are read from the file.
-- First line: username
-- Second line: password
+- First line: username  
+- Second line: password  
 For security reasons, change the file permissions of `account.txt` so that others cannot read your credentials.
 
 
