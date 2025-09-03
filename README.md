@@ -25,19 +25,19 @@ This script is based on the one distributed by DIAS, with modifications applied
     Modify the definition of `DIAS_DIRECTORY`.
     Note that this directory refers to DIAS, not your local computer.
     Open DIAS Download Website and check the dataset path.
-    For example, "`/JRA3Q/Hist/Daily/anl_p125/`" for the JRA3Q 6-hourly `anl_p125` dataset.
-    "`/JRA3Q/Hist/Daily/anl_p125`" is also valid, sice "`/`" will be automatically appended if missing.
+    For example, "`/JRA3Q/Hist/Daily/anl_p125/`" for the JRA-3Q 6-hourly `anl_p125` dataset.
+    "`/JRA3Q/Hist/Daily/anl_p125`" is also valid, since "`/`" will be automatically appended if missing.
 
 1. Set the title of data  
     Modify the definition of `TITLE`.
     For example:
-    - `"anl_p125_ugrd"` for u-wind on isobaric surfaces of JRA3Q 6-hourly analysis data
-    - `"fcst_phyp125_ttswr"` for temperature tendency due to short wave radiation of JRA3Q 6-hourly forecast data.
+    - `"anl_p125_ugrd"` for u-wind on isobaric surfaces of JRA-3Q 6-hourly analysis data
+    - `"fcst_phyp125_ttswr"` for temperature tendency due to short wave radiation of JRA-3Q 6-hourly forecast data.
 
 1. Set the destination directory on your computer  
     Modify the definition of `COMP_DIRECTORY`.
     Data will be downloaded under this directory.
-    As with `DIAS_DIRECTORY`, the trailing "`/`" is potional.
+    As with `DIAS_DIRECTORY`, the trailing "`/`" is optional.
 
 1. Set the dataset number  
     Modify the definition of `targeturl`.
@@ -61,7 +61,7 @@ To execute the script:
 $ python2 download.py
 ```
 You will be prompted to enter your username and password.
-Username is your e-mail adress to login to DIAS.
+Username is your e-mail address used to log in to DIAS.
 
 ### Command Line Argument
 command line arguments can also be used.
@@ -71,7 +71,7 @@ $ python2 download.py 2022/03/01/00 2022/03/31/18 fcst_phyp125_ttlwr
 ```
 The first and second command line arguments correspond to `INITIAL_DATE` and `FINAL_DATE`.
 Their format is "`YYYY/MM/DD/HH`".
-The third specify `TITLE`.
+The third specifies `TITLE`.
 If the first and second arguments are invalid, or if arguments are missing, the script will instead use the values defined within it.
 
 
@@ -79,7 +79,7 @@ If the first and second arguments are invalid, or if arguments are missing, the 
 If `./account.txt` exists, your username and password are read from the file.
 - First line: username
 - Second line: password
-For security reasons, change the file permission of `account.txt` so that others cannot read your credentials.
+For security reasons, change the file permissions of `account.txt` so that others cannot read your credentials.
 
 
 ## Log
@@ -91,7 +91,7 @@ YYYY/MM/DD HH:MM:SS  (ABSOLUTE PATH OF FILE) EXIST/OK/NG
 ```
 The first block is the date and time of the download execution.
 If the last word is `EXIST`, the file already exists and the download command was skipped
-If `OK`, file was downloaded successfully.
+If `OK`, the file was downloaded successfully.
 If `NG`, the download failed.
 
 
